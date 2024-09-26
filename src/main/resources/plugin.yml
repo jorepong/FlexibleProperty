@@ -1,0 +1,4 @@
+name: FlexibleProperty
+version: '1.0-SNAPSHOT'
+main: com.github.jorepong.flexibleProperty.FlexibleProperty
+api-version: '1.19'
