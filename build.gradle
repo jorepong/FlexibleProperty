@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.github.goooler.shadow' version '8.1.7'
 }
 
 group = 'com.github.jorepong'
@@ -15,10 +16,16 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven { url = "https://repo.codemc.org/repository/maven-public/" }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
+    compileOnly "dev.jorel:commandapi-annotations:9.5.2"
+
+    // CommandAPI 버전 셰이딩
+    implementation "dev.jorel:commandapi-bukkit-shade:9.5.2"
+    annotationProcessor "dev.jorel:commandapi-annotations:9.5.2"
 }
 
 def targetJavaVersion = 17
@@ -46,4 +53,13 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+shadowJar {
+    dependencies {
+        include dependency("dev.jorel:commandapi-bukkit-shade:9.5.2")  // CommandAPI 포함
+    }
+
+    // 패키지 이동 설정 - 원하는 패키지명으로 변경
+    relocate("dev.jorel.commandapi", "com.github.jorepong.flexibleProperty.commandapi")
 }
