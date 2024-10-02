@@ -1,5 +1,6 @@
 package com.github.jorepong.flexibleProperty.command;
 
+import com.github.jorepong.flexibleProperty.Property;
 import com.github.jorepong.flexibleProperty.PropertyDatabase;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.ArgumentSuggestions;
@@ -24,8 +25,8 @@ public class CreatePropertyCommand {
         Location firstPosition = location.add(-4, 0, -4);
         Location secondPosition = location.add(5, 0, 5);
 
-        PropertyDatabase propertyDatabase = new PropertyDatabase();
-        propertyDatabase.saveProperty(firstPosition, secondPosition);
+        Property property = new Property(firstPosition, secondPosition);
+        PropertyDatabase.addProperty(property);
 
         player.sendMessage("Property created!");
     }

@@ -24,11 +24,12 @@ public final class FlexibleProperty extends JavaPlugin {
         CommandAPI.onEnable();
         TestCommand.register();
         CommandManager.registerCommands();
+        PropertyDatabase.loadProperties();
     }
 
     @Override
     public void onDisable() {
         CommandAPI.onDisable();
-
+        PropertyDatabase.saveProperties();
     }
 }
